@@ -1,0 +1,16 @@
+.mat-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

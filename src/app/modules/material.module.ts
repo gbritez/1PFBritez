@@ -6,17 +6,26 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [],
-  imports: [
+  exports: [
     CommonModule,
     MatButtonModule,
     MatInputModule,
     MatIconModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
-    MatSortModule
-  ]
+    MatSortModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatFormFieldModule
+  ],
 })
 export class MaterialModule { }

@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Create student</h2>
+    <form [formGroup]="studentForm" (ngSubmit)="save()">
+        <mat-form-field class="form-element">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+            <mat-label>Age</mat-label>
+            <input matInput type="number" formControlName="age">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+            <mat-label>Grade</mat-label>
+            <input matInput type="number" formControlName="grade">
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="button" type="submit">Save</button>
+    </form>
+</div>

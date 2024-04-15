@@ -1,1 +1,29 @@
-<p>students works!</p>
+<h2>Students</h2>
+<div class="container">
+    <div class="actions">
+        <button mat-fab color="primary" (click)="openDialog()" class="add-button">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <!-- Header -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell *matCellDef="let t">{{ t.firstName | transformName : t.lastName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+            <mat-cell *matCellDef="let t">{{ t.age }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="grade">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Grade</mat-header-cell>
+            <mat-cell *matCellDef="let t">{{ t.grade }}</mat-cell>
+        </ng-container>
+
+        <!-- Row definitions -->
+        <mat-header-row *matHeaderRowDef="columns" appTitle></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+    </mat-table>
+</div>
