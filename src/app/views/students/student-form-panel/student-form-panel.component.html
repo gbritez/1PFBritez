@@ -17,6 +17,7 @@
             <mat-label>Grade</mat-label>
             <input matInput type="number" formControlName="grade">
         </mat-form-field>
-        <button mat-raised-button color="primary" class="button" type="submit">Save</button>
+        <button mat-raised-button color="primary" class="button" type="submit"
+            [disabled]="!studentForm.valid">Save</button>
     </form>
 </div>

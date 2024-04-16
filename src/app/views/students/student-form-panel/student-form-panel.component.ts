@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../models/student';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StudentsService } from '../../../services/students.service';
@@ -29,10 +29,10 @@ export class StudentFormPanelComponent {
   initForm() {
     const student = this.data.students ? this.data.students.filter(x => x.id === this.data.id)[0] : null;
     this.studentForm = this.fb.group({
-      firstName: [student?.firstName || null],
-      lastName: [student?.lastName || null],
-      age: [student?.age || null],
-      grade: [student?.grade || null]
+      firstName: [student?.firstName || null, Validators.required],
+      lastName: [student?.lastName || null, Validators.required],
+      age: [student?.age || null, Validators.required],
+      grade: [student?.grade || null, Validators.required]
     })
   }
 
