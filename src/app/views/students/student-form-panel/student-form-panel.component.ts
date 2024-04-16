@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Student } from '../../../models/student';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StudentsService } from '../../../services/students.service';
+import { STUDENTS } from '../../../data/mock-students';
 
 @Component({
   selector: 'app-student-form-panel',
@@ -16,7 +17,8 @@ export class StudentFormPanelComponent {
   constructor(
     private studentsService: StudentsService,
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<StudentFormPanelComponent>
+    public dialogRef: MatDialogRef<StudentFormPanelComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { id: string, students: Student[] }
   ) { }
 
 
@@ -25,11 +27,12 @@ export class StudentFormPanelComponent {
   }
 
   initForm() {
+    const student = this.data.students ? this.data.students.filter(x => x.id === this.data.id)[0] : null;
     this.studentForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      age: [''],
-      grade: ['']
+      firstName: [student?.firstName || null],
+      lastName: [student?.lastName || null],
+      age: [student?.age || null],
+      grade: [student?.grade || null]
     })
   }
 

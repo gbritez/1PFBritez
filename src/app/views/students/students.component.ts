@@ -15,7 +15,7 @@ import { MatSort } from '@angular/material/sort';
 export class StudentsComponent {
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: any;
-  columns: string[] = ['name', 'age', 'grade'];
+  columns: string[] = ['name', 'age', 'grade', 'actions'];
   constructor(
     private studentsService: StudentsService,
     public dialog: MatDialog,
@@ -38,19 +38,36 @@ export class StudentsComponent {
     this.dataSource.sort = this.sort;
   }
 
-  openDialog(): void {
+  new(): void {
     const dialogRef = this.dialog.open(StudentFormPanelComponent, {
       width: '800px',
       data: {}
     });
 
     dialogRef.componentInstance.formValuesEmitter.subscribe((formValues: Student) => {
-      const newData = [...this.dataSource];
-      newData.push(formValues);
-      this.dataSource = newData;
+      this.dataSource.data = [...this.dataSource.data, formValues];
       this.cdr.detectChanges();
     });
 
+  }
+
+  edit(rowId: string) {
+    const dialogRef = this.dialog.open(StudentFormPanelComponent, {
+      width: '800px',
+      data: { id: rowId, students: this.dataSource.data }
+    });
+    dialogRef.componentInstance.formValuesEmitter.subscribe((formValues: Student) => {
+      const data = this.dataSource.data.filter((x: Student) => x.id !== rowId)
+      formValues.id = rowId;
+      this.dataSource.data = [...data, formValues];
+      this.cdr.detectChanges();
+    });
+  }
+
+  delete(rowId: string) {
+    const data = this.dataSource.data.filter((x: Student) => x.id !== rowId);
+    this.dataSource.data = data;
+    this.cdr.detectChanges();
   }
 
 }
