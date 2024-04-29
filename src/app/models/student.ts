@@ -4,4 +4,5 @@ export interface Student {
     lastName: string;
     age: number;
     grade: number;
+    [key: string]: any;
 }

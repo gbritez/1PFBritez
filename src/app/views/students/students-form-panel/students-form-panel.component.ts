@@ -6,18 +6,18 @@ import { StudentsService } from '../../../services/students.service';
 import { STUDENTS } from '../../../data/mock-students';
 
 @Component({
-  selector: 'app-student-form-panel',
-  templateUrl: './student-form-panel.component.html',
-  styleUrl: './student-form-panel.component.css'
+  selector: 'app-students-form-panel',
+  templateUrl: './students-form-panel.component.html',
+  styleUrl: './students-form-panel.component.css'
 })
-export class StudentFormPanelComponent {
+export class StudentsFormPanelComponent {
   studentForm!: FormGroup;
   @Output() formValuesEmitter = new EventEmitter<Student>();
 
   constructor(
     private studentsService: StudentsService,
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<StudentFormPanelComponent>,
+    public dialogRef: MatDialogRef<StudentsFormPanelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: string, students: Student[] }
   ) { }
 
